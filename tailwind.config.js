@@ -6,6 +6,9 @@ module.exports = {
       minHeight: {
         '125': '31.25rem', 
       },
+      fontFamily: {
+        'ubuntu': ["'Ubuntu'", 'sans-serif']
+      }
     },
   },
   variants: {

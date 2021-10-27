@@ -27,7 +27,7 @@ def index():
             'link': '/'
         },
     ]
-    return render_template("index.html", banner_img=banner_img, articles=articles)
+    return render_template("index.html", banner_img=banner_img, articles=articles, heading="Blog")
 
 @app.route("/about")
 @app.route("/archive")

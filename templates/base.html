@@ -6,13 +6,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{% block title %}{% endblock title %}</title>
         <link rel="stylesheet" href="/static/css/style.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet"> 
     </head>
-    <body class="flex flex-col h-full">
+    <body class="font-ubuntu flex flex-col h-full">
         <header
             class="
                 flex
-                py-3
-                px-6
+                p-3
+                md:px-6
                 justify-between
                 items-center
                 h-auto
@@ -54,8 +57,8 @@
                 flex
                 justify-center
                 items-center
-                bg-bottom
-                bg-fixed
+                bg-top
+                md:bg-fixed
                 border-black border
                 shadow-2xl
                 bg-no-repeat
