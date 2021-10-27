@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{% block title %}{% endblock title %}</title>
+        <link rel="stylesheet" href="/static/css/style.css" />
+    </head>
+    <body class="flex flex-col h-full">
+        <header
+            class="
+                flex
+                py-3
+                px-6
+                justify-between
+                items-center
+                h-auto
+                bg-blue-600 bg-opacity-70
+                fixed
+                w-full
+                text-gray-100
+                font-bold
+            "
+        >
+            <a href="/" class="flex items-center gap-2 md:gap-7">
+                <figure
+                    class="
+                        border-2 border
+                        rounded
+                        border-black
+                        rounded-full
+                        overflow-hidden
+                        w-11
+                    "
+                >
+                    <img
+                        src="/static/images/logo.png"
+                        alt="Anas Basheer Logo"
+                    />
+                </figure>
+                <h3 class="text-lg sm:text-xl md:text-2xl">Anas Basheer</h3>
+            </a>
+            <nav>
+                <ul class="flex text-sm gap-4 md:gap-7 md:text-base">
+                    <li><a class="hover:text-gray-300" href="/">Home</a></li>
+                    <li><a class="hover:text-gray-300" href="/about">About</a></li>
+                    <li><a class="hover:text-gray-300" href="/archive">Archive</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div
+            class="
+                flex
+                justify-center
+                items-center
+                bg-bottom
+                bg-fixed
+                border-black border
+                shadow-2xl
+                bg-no-repeat
+                {% if banner_full %} 
+                    min-h-screen
+                {% else %}
+                    min-h-125
+                {% endif %}
+                bg-cover
+            "
+            style="background-image: url('{{ banner_img }}');"
+        >
+            {% if heading %}
+                <h2
+                    class="
+                        text-6xl
+                        font-bold
+                        text-gray-100
+                        w-full
+                        h-auto
+                        py-5
+                        text-center
+                        bg-gray-800 bg-opacity-50
+                    "
+                >
+                    {{ heading }}
+                </h2>
+            {% endif %}
+        </div>
+        {% block body %} {% endblock body %}
+        <footer class="flex justify-center items-center">
+            <p>2021 &copy; Anas Basheer</p>
+        </footer>
+    </body>
+</html>

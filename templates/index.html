@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock title %}
+{% block body %}
+
+    <main class="flex m-2 py-2 px-4">
+        <aside class="">
+
+        </aside>
+        <section class="flex flex-col gap-4 h-full bg-yellow-300 bg-opacity-50 p-4">
+            <h2 class="text-2xl md:text-3xl font-bold">Recent Posts</h2>
+            {% for article in articles %}
+
+                <article class="flex-col flex gap-1 text-base md:text-lg border-2 border-yellow-300">
+                    <h3 class="text-lg md:text-xl font-semibold">{{ article.heading }}</h3>
+                    <p>{{ article.content[:290] }}... <span><a href="{{ article.link }}" class="text-sm underline text-gray-700">Read more</a></span></p>
+                </article>
+                <br>
+            
+            {% endfor %}
+        </section>
+    </main>
+
+{% endblock body %}
