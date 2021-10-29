@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Write New Post{% endblock title %}
+{% block body %}
+    <main class="p-3">
+        <section class="flex flex-col gap-2 md:gap-3 text-xl md:text-2xl bg-yellow-300 bg-opacity-70 p-3">
+            <h2 class="text-xl md:text-3xl font-bold">
+                🖊️ Write New Post ️ 
+            </h2>
+            <form action="/new-post" method="post" class="flex flex-col gap-2 md:gap-3">
+                <input type="text" name="title" required placeholder="Title" class="md:text-3xl px-2 md:p-4">
+                <textarea type="text" name="content" required placeholder="Body" class="h-64 md:h-80 px-2 md:p-4"></textarea>
+                <span class="flex gap-1 items-center px-2">
+                    <label for="draft">Draft</label>
+                    <input type="checkbox" name="draft" checked id="draft" class="w-auto h-full">
+                    <p class="text-xs md:text-sm">If Draft only authorized can access</p>
+                </span>
+                <button type="submit" class="bg-blue-500 font-medium p-1 text-gray-100 rounded-lg w-1/4 md:w-1/6">Post</button>
+            </form>
+        </section>
+    </main>
+{% endblock body %}

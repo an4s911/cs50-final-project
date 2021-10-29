@@ -11,7 +11,9 @@
         <section class="flex flex-col gap-4 h-full w-full flex-shrink bg-yellow-300 bg-opacity-50 p-4">
             <div class="flex justify-between">
                 <h2 class="text-2xl md:text-3xl font-bold">
-                    Recent Posts
+                    {% block heading %}
+                        Recent Posts
+                    {% endblock heading %}
                 </h2>
                 <button class="bg-blue-500 font-medium p-1 text-gray-100 rounded-lg">
                     <a href="/new-post">🖊️ New Post</a>

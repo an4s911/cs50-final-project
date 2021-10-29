@@ -27,7 +27,7 @@ cursE = curs.execute # Just because Im too lazy to type `curs.execute` every sin
 @app.route("/")
 def index():
     banner_img = url_for('static', filename='images/banner.jpg')
-    curs.execute("SELECT * FROM blogs ORDER BY pub_date DESC LIMIT 5")
+    curs.execute("SELECT * FROM blogs WHERE NOT draft ORDER BY pub_date DESC LIMIT 5")
     articles = curs.fetchall()
     return render_template("index.html", banner_img=banner_img, articles=articles, heading="Blog")
 
@@ -43,11 +43,21 @@ def new_post():
         title = request.form.get('title')
         content = request.form.get('content')
         draft = bool(request.form.get('draft'))
-        
-        flash('Post Drafted' if draft else 'Post Published')
+
+        try:
+            cursE(f"INSERT INTO blogs (title, content, draft) VALUES ('{title}', '{content}', {int(draft)})")
+        except Exception as e:
+            print(e)
+            db.rollback()
+            flash("Sorry, we couldn't post it")
+        else:
+            db.commit()
+            flash('Post Drafted' if draft else 'Post Published')
+
         return redirect(url_for('.index'))
-    banner_img = url_for('static', filename="images/banner.jpg")
-    return render_template('new-post.html', banner_img=banner_img, heading="New Post")
+    else:
+        banner_img = url_for('static', filename="images/banner.jpg")
+        return render_template('new-post.html', banner_img=banner_img, heading="New Post")
 
 @app.errorhandler(werkzeug.exceptions.HTTPException)
 def page_not_found(e):
