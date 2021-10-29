@@ -32,10 +32,15 @@ def index():
     return render_template("index.html", banner_img=banner_img, articles=articles, heading="Blog")
 
 @app.route("/about")
-@app.route("/archive")
 def about():
     banner_img = url_for('static', filename="images/construction.jpg")
     return render_template("base.html", banner_img=banner_img, banner_full=True)
+
+@app.route("/archive")
+def archive():
+    cursE("SELECT * FROM blogs WHERE NOT draft ORDER BY pub_date")
+    articles = curs.fetchall()
+    return render_template("archive.html", heading='Archive', articles=articles)
 
 @app.route("/new-post", methods=['GET', 'POST'])
 def new_post():

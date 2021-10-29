@@ -15,14 +15,16 @@
                         Recent Posts
                     {% endblock heading %}
                 </h2>
-                <button class="bg-blue-500 font-medium p-1 text-gray-100 rounded-lg">
-                    <a href="/new-post">🖊️ New Post</a>
-                </button>
+                {% block new_post_button %}
+                    <button class="bg-blue-500 font-medium p-1 text-gray-100 rounded-lg">
+                        <a href="/new-post">🖊️ New Post</a>
+                    </button>
+                {% endblock new_post_button %}
             </div>
             {% for article in articles %}
 
                 <article class="flex-col p-2 flex gap-1 text-base md:text-lg border-2 border-yellow-300">
-                    <h3 class="text-lg md:text-xl font-semibold">{{ article.title }}</h3>
+                    <h3 class="text-lg md:text-xl font-semibold"><a href="{{ article.link }}">{{ article.title }}</a></h3>
                     <p>{{ article.content[:290] }}{% if article.content[290:] %}... <span><a href="{{ article.link }}" class="text-sm underline text-gray-700">Read more</a></span>{% endif %}</p>
                 </article>
             
