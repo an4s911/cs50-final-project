@@ -8,7 +8,7 @@ module.exports = {
       },
       fontFamily: {
         'ubuntu': ["'Ubuntu'", 'sans-serif']
-      }
+      },
     },
   },
   variants: {

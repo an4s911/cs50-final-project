@@ -20,7 +20,7 @@
                 items-center
                 h-auto
                 bg-blue-600 bg-opacity-70
-                fixed
+                {% if not banner_full %} fixed {% endif %}
                 w-full
                 text-gray-100
                 font-bold
@@ -63,11 +63,13 @@
                 shadow-2xl
                 bg-no-repeat
                 {% if banner_full %} 
-                    min-h-screen
+                    h-64
+                    bg-contain
+                    md:min-h-screen
                 {% else %}
                     min-h-125
+                    bg-cover
                 {% endif %}
-                bg-cover
             "
             style="background-image: url('{{ banner_img }}');"
         >
@@ -88,7 +90,10 @@
                 </h2>
             {% endif %}
         </div>
-        {% block body %} {% endblock body %}
+
+        {% block body %}
+        {% endblock body %}
+
         <footer class="flex justify-center items-center">
             <p>2021 &copy; Anas Basheer</p>
         </footer>
