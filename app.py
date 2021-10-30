@@ -44,7 +44,7 @@ def construction():
 
 @app.route("/archive")
 def archive():
-    cursE("SELECT * FROM blogs WHERE NOT draft ORDER BY pub_date")
+    cursE("SELECT * FROM blogs WHERE NOT draft ORDER BY pub_date desc")
     articles = curs.fetchall()
     banner_img = url_for('static', filename='images/archive.jpg')
     return render_template("archive.html", heading='Archive', articles=articles, banner_img=banner_img)
