@@ -95,6 +95,20 @@ def edit_post(post_id):
         banner_img = url_for('static', filename="images/banner.jpg")
         return render_template('edit_post.html', article=article, banner_img=banner_img)
 
+@app.route('/delete/post_<post_id>')
+def delete(post_id):
+    try:
+        cursE(f"DELETE FROM blogs WHERE id={post_id}")
+    except Exception as e:
+        print(e)
+        db.rollback()
+        flash("Sorry, we couldn't delete it")
+    else:
+        db.commit()
+        flash('Post Deleted')
+
+    return redirect('/')
+
 @app.errorhandler(werkzeug.exceptions.HTTPException)
 def page_not_found(e):
     banner_img = url_for('static', filename=f"images/{e.code}.png")
