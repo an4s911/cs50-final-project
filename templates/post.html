@@ -12,9 +12,10 @@
     {% for para in article.content.split('\n') %}
         <p>{{ para }}</p>
     {% endfor %}
-    <a href="/delete/post_{{ article.id }}">
-        <button type="button" class="bg-red-500 font-medium p-1 text-gray-100 rounded-lg w-1/4 md:w-1/6">
+    <form action="/delete" method="post">
+        <input type="number" name="id" class="hidden" value="{{ article.id }}">
+        <button type="submit" class="bg-red-500 font-medium p-1 text-gray-100 rounded-lg w-1/4 md:w-1/6">
             Delete Post
         </button>
-    </a>
+    </form>
 {% endblock section %}

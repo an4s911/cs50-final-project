@@ -79,7 +79,7 @@ def edit_post(post_id):
         draft = bool(request.form.get('draft'))
 
         try:
-            cursE(f"UPDATE blogs set title='{title}', content='{content}', draft={int(draft)}")
+            cursE(f"UPDATE blogs set title='{title}', content='{content}', draft={int(draft)} WHERE id={post_id}")
         except Exception as e:
             print(e)
             db.rollback()
@@ -95,8 +95,9 @@ def edit_post(post_id):
         banner_img = url_for('static', filename="images/banner.jpg")
         return render_template('edit_post.html', article=article, banner_img=banner_img)
 
-@app.route('/delete/post_<post_id>')
-def delete(post_id):
+@app.route('/delete', methods=["POST"])
+def delete():
+    post_id = request.form.get('id')
     try:
         cursE(f"DELETE FROM blogs WHERE id={post_id}")
     except Exception as e:
@@ -116,5 +117,5 @@ def page_not_found(e):
 
 
 if __name__=="__main__":
-    app.run(host='0.0.0.0', port=8000, debug=True)
+    app.run(host='0.0.0.0', port=8762, debug=True)
     db.close()
