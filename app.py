@@ -38,6 +38,7 @@ def post(post_id):
     banner_img = url_for('static', filename=f"images/banner.jpg")
     return render_template('post.html', article=article, banner_img=banner_img, heading=article['title'])
 
+def construction():
     banner_img = url_for('static', filename="images/construction.jpg")
     return render_template("base.html", banner_img=banner_img, banner_full=True)
 
@@ -65,10 +66,34 @@ def new_post():
             db.commit()
             flash('Post Drafted' if draft else 'Post Published')
 
-        return redirect(url_for('.index'))
+        return redirect('/')
     else:
         banner_img = url_for('static', filename="images/banner.jpg")
         return render_template('new-post.html', banner_img=banner_img, heading="New Post")
+
+@app.route('/edit/post_<post_id>', methods=["POST", "GET"])
+def edit_post(post_id):
+    if request.method == 'POST':
+        title = request.form.get('title')
+        content = request.form.get('content').replace('\'', '\\\'')
+        draft = bool(request.form.get('draft'))
+
+        try:
+            cursE(f"UPDATE blogs set title='{title}', content='{content}', draft={int(draft)}")
+        except Exception as e:
+            print(e)
+            db.rollback()
+            flash("Sorry, we couldn't update it")
+        else:
+            db.commit()
+            flash('Post updated and Drafted' if draft else 'Post Updated')
+
+        return redirect('/')
+    else:
+        cursE(f"SELECT * FROM blogs WHERE id={post_id}")
+        article = curs.fetchone()
+        banner_img = url_for('static', filename="images/banner.jpg")
+        return render_template('edit_post.html', article=article, banner_img=banner_img)
 
 @app.errorhandler(werkzeug.exceptions.HTTPException)
 def page_not_found(e):
