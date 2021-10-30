@@ -1,35 +1,17 @@
-{% extends "base.html" %}
+{% extends "post_template.html" %}
+
 {% block title %}Home{% endblock title %}
-{% block body %}
 
-    <main class="flex flex-col items-center m-2 p-2 md:px-4">
-        {% if get_flashed_messages() %}
-            <h4 class="w-full rounded bg-green-600 p-4 m-2 text-xl text-gray-200">
-                {{ get_flashed_messages()[0] }} !
-            </h4>
-        {% endif %}
-        <section class="flex flex-col gap-4 h-full w-full flex-shrink bg-yellow-300 bg-opacity-50 p-4">
-            <div class="flex justify-between">
-                <h2 class="text-2xl md:text-3xl font-bold">
-                    {% block heading %}
-                        Recent Posts
-                    {% endblock heading %}
-                </h2>
-                {% block new_post_button %}
-                    <button class="bg-blue-500 font-medium p-1 text-gray-100 rounded-lg">
-                        <a href="/new-post">🖊️ New Post</a>
-                    </button>
-                {% endblock new_post_button %}
-            </div>
-            {% for article in articles %}
+{% block heading_2 %}
+    Recent Posts
+{% endblock heading_2 %}
 
-                <article class="flex-col p-2 flex gap-1 text-base md:text-lg border-2 border-yellow-300">
-                    <h3 class="text-lg md:text-xl font-semibold"><a href="{{ article.link }}">{{ article.title }}</a></h3>
-                    <p>{{ article.content[:290] }}{% if article.content[290:] %}... <span><a href="{{ article.link }}" class="text-sm underline text-gray-700">Read more</a></span>{% endif %}</p>
-                </article>
-            
-            {% endfor %}
-        </section>
-    </main>
+{% block section %}
+    {% for article in articles %}
+        <article class="flex-col p-2 flex gap-1 text-base md:text-lg border-2 border-yellow-300">
+            <h3 class="text-lg md:text-xl font-semibold"><a href="/posts/post_{{ article.id }}">{{ article.title }}</a></h3>
+            <p>{{ article.content[:290] }}{% if article.content[290:] %}... <span><a href="/posts/post_{{ article.id }}" class="text-sm underline text-gray-700">Read more</a></span>{% endif %}</p>
+        </article>
+    {% endfor %}
+{% endblock section %}
 
-{% endblock body %}

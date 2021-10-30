@@ -31,8 +31,13 @@ def index():
     articles = curs.fetchall()
     return render_template("index.html", banner_img=banner_img, articles=articles, heading="Blog")
 
-@app.route("/about")
-def about():
+@app.route('/posts/post_<post_id>')
+def post(post_id):
+    cursE(f"SELECT * FROM blogs WHERE id={post_id}")
+    article = curs.fetchone()
+    banner_img = url_for('static', filename=f"images/banner.jpg")
+    return render_template('post.html', article=article, banner_img=banner_img, heading=article['title'])
+
     banner_img = url_for('static', filename="images/construction.jpg")
     return render_template("base.html", banner_img=banner_img, banner_full=True)
 
