@@ -52,7 +52,7 @@ def archive():
 @app.route("/new-post", methods=['GET', 'POST'])
 def new_post():
     if request.method == 'POST':
-        title = request.form.get('title')
+        title = request.form.get('title').replace('\'', '\\\'')
         content = request.form.get('content').replace('\'', '\\\'')
         draft = bool(request.form.get('draft'))
 
