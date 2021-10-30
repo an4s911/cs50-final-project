@@ -40,13 +40,14 @@ def about():
 def archive():
     cursE("SELECT * FROM blogs WHERE NOT draft ORDER BY pub_date")
     articles = curs.fetchall()
-    return render_template("archive.html", heading='Archive', articles=articles)
+    banner_img = url_for('static', filename='images/archive.jpg')
+    return render_template("archive.html", heading='Archive', articles=articles, banner_img=banner_img)
 
 @app.route("/new-post", methods=['GET', 'POST'])
 def new_post():
     if request.method == 'POST':
         title = request.form.get('title')
-        content = request.form.get('content')
+        content = request.form.get('content').replace('\'', '\\\'')
         draft = bool(request.form.get('draft'))
 
         try:
