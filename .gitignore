@@ -4,4 +4,4 @@ __pycache__/
 .cs50/
 temp/
 test.py
-*~
+*.*~
