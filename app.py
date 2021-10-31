@@ -19,10 +19,22 @@ db = mc.connect(
     host='localhost',
     user=os.getenv("MYSQL_USERNAME"),
     password=os.getenv("MYSQL_PASSWORD"),
-    database="cs50_final"
 )
 curs = db.cursor(dictionary=True) # curs meaning Cursor
 cursE = curs.execute # Just because Im too lazy to type `curs.execute` every single time you know
+
+# Initialize the database and table if it doesn't already exist
+cursE('CREATE DATABASE IF NOT EXISTS cs50_final')
+cursE('USE cs50_final')
+cursE('''CREATE TABLE IF NOT EXISTS `blogs` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `title` text,
+  `content` text,
+  `draft` tinyint(1) NOT NULL DEFAULT '1',
+  `pub_date` datetime DEFAULT CURRENT_TIMESTAMP,
+  `last_mod` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+)''')
 
 @app.route("/")
 def index():

@@ -65,3 +65,26 @@ It makes a section which is required in multiple other templates with CSS applie
 This is the template for an individual post. It is extended to `post_template.html`. 
 
 This shows the title, of the post and its content for users to read. Here we can select edit and also delete the post if needed. 
+
+## How to run this program?
+**Prequisites**: Python3.x, MySQL Server setup
+**Steps to run**:
+- Download or clone the source files. 
+    - `git clone https://github.com/an4s911/cs50-final-project`
+    - `cd cs50-final-project`
+- Make a new file called `.env`
+    - set the environment variables for MySQL
+        - `MYSQL_USERNAME` & `MYSQL_PASSWORD`
+    - set the secret key: a random byte value. You can do something like this
+        - `SECRET_KEY=b'oap4kc73lcj'`
+- Make a new virtual environment and source it.
+    - `python -m venv venv`
+    - For Windows:
+        - `source venv\Scripts\activate`
+    - For Unix-like:
+        - `source venv/bin/activate`
+- Install the requirements using `pip`
+    - `pip install -r requirements.txt`
+- Run the python app. 
+    - `python app.py`
+- Open `localhost:8000` in your browser. 
