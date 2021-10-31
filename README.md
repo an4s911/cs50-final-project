@@ -8,7 +8,7 @@
 This project is a web application made using Python, Flask, HTML, TailwindCSS and MySQL. It is a blog site, where anyone can read blogs, write new blogs, update/edit existing blogs or delete any blog. 
 
 ## How to run this program?
-**Prequisites**: Python3.x, MySQL Server setup
+**Prequisites**: Python3.8+, MySQL Server setup
 **Steps to run**:
 - Download or clone the source files. 
     - `git clone https://github.com/an4s911/cs50-final-project`
