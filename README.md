@@ -77,6 +77,12 @@ This shows the title, of the post and its content for users to read. Here we can
         - `MYSQL_USERNAME` & `MYSQL_PASSWORD`
     - set the secret key: a random byte value. You can do something like this
         - `SECRET_KEY=b'oap4kc73lcj'`
+    - the `.env` file might look something like this
+        ```
+        MYSQL_USERNAME=testuser
+        MYSQL_PASSWORD=testpass
+        SECRET_KEY=b'oniw72js782a'
+        ```
 - Make a new virtual environment and source it.
     - `python -m venv venv`
     - For Windows:
